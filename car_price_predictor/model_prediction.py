@@ -1,6 +1,10 @@
 import pandas as pd
 import joblib
 
+
+def load_model(model_path):
+    return joblib.load(model_path)
+
 def load_encoders_and_scaler(encoders_path,scalar_path):
     encoders = {}
     for column in ["year", "make", "trim", "body", "condition", "transmission"]:

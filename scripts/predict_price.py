@@ -1,4 +1,4 @@
-from car_price_predictor.model_prediction import load_encoders_and_scaler, preprocess_new_data, predict_price
+from car_price_predictor.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
 import joblib
 import yaml
 
@@ -11,7 +11,7 @@ encoders_path = config['encoders_path']
 scalar_path = config['scaler_path']
 
 # Load model, encoders, and scaler
-model = joblib.load(model_save_path)
+model = load_model(model_save_path)
 encoders, scaler = load_encoders_and_scaler(encoders_path, scalar_path)
 
 # New data

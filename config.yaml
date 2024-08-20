@@ -2,9 +2,9 @@
 
 # Paths
 data_path: "dataset/car_prices.csv"
-model_save_path: "trained/car_rent_predictor.joblib"
+model_save_path: "trained/model/car_rent_predictor.joblib"
 encoders_path: "trained/encoders/"
-scaler_path: "trained/scalers/"
+scaler_path: "trained/scaler/"
 
 # Model Parameters
 random_state: 42
