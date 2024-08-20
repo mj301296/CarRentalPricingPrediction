@@ -20,7 +20,7 @@ def scale_features(input_data):
     scaled_data = pd.DataFrame(scaler.fit_transform(input_data), columns=input_data.columns)
     return scaled_data, scaler
 
-def save_encoders_and_scaler(label_encoders, scaler):
+def save_encoders_and_scaler(label_encoders, scaler, encoders_path, scalar_path):
     for column, le in label_encoders.items():
-        joblib.dump(le, f"{column}_le.joblib")
-    joblib.dump(scaler, "scaler.joblib")
+        joblib.dump(le, f"{encoders_path}{column}_le.joblib")
+    joblib.dump(scaler, f"{scalar_path}scaler.joblib")

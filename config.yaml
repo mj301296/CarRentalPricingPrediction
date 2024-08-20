@@ -1,0 +1,11 @@
+# config.yaml
+
+# Paths
+data_path: "dataset/car_prices.csv"
+model_save_path: "trained/car_rent_predictor.joblib"
+encoders_path: "trained/encoders/"
+scaler_path: "trained/scalers/"
+
+# Model Parameters
+random_state: 42
+test_size: 0.2

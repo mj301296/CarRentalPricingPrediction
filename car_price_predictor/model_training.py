@@ -3,12 +3,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import joblib
 
-def split_data(input_data, output_data):
-    x_train, x_test, y_train, y_test = train_test_split(input_data, output_data, test_size=0.2, random_state=42)
+def split_data(input_data, output_data, split_ratio, r_state):
+    x_train, x_test, y_train, y_test = train_test_split(input_data, output_data, test_size=split_ratio, random_state=r_state)
     return x_train, x_test, y_train, y_test
 
-def train_model(x_train, y_train):
-    rf = RandomForestRegressor(random_state=42)
+def train_model(x_train, y_train, r_state):
+    rf = RandomForestRegressor(random_state=r_state)
     rf.fit(x_train, y_train)
     return rf
 
@@ -22,5 +22,5 @@ def evaluate_model(rf, x_train, y_train, x_test, y_test):
     print("R squared for train is :", rf.score(x_train, y_train) * 100)
     print("R squared for test is :", rf.score(x_test, y_test) * 100)
 
-def save_model(rf, filename="car_rent_predictor.joblib"):
+def save_model(rf, filename):
     joblib.dump(rf, filename)

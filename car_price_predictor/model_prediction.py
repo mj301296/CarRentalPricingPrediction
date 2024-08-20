@@ -1,11 +1,11 @@
 import pandas as pd
 import joblib
 
-def load_encoders_and_scaler():
+def load_encoders_and_scaler(encoders_path,scalar_path):
     encoders = {}
     for column in ["year", "make", "trim", "body", "condition", "transmission"]:
-        encoders[column] = joblib.load(f"{column}_le.joblib")
-    scaler = joblib.load("scaler.joblib")
+        encoders[column] = joblib.load(f"{encoders_path}{column}_le.joblib")
+    scaler = joblib.load(f"{scalar_path}scaler.joblib")
     return encoders, scaler
 
 def preprocess_new_data(new_data, encoders, scaler):
