@@ -2,9 +2,12 @@ include *.txt
 include *.md
 include *.yaml
 
-recursive-include car_price_predictor *.py
-recursive-include dataset *.csv
-recursive-include trained *
+recursive-include car_price_predictor/*
+
+include car_price_predictor/trained/encoders/*.pkl
+include car_price_predictor/trained/scalers/*.pkl
+include car_price_predictor/trained/model/*.pkl
+include car_price_predictor/*.yaml
 
 exclude *.log
 exclude *.cfg

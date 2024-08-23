@@ -1,12 +1,22 @@
 import pandas as pd
 import pickle
+import yaml
+
+# Load the config file
+with open("car_price_predictor/config.yaml", 'r') as file:
+    config = yaml.safe_load(file)
+    
+data_path = config['data_path']
+model_save_path = config['model_save_path']
+encoders_path = config['encoders_path']
+scalar_path = config['scaler_path']
 
 
-def load_model(model_path):
-    with open(model_path, 'rb') as file:
+def load_model():
+    with open(model_save_path, 'rb') as file:
         return pickle.load(file)
 
-def load_encoders_and_scaler(encoders_path,scalar_path):
+def load_encoders_and_scaler():
     encoders = {}
     for column in ["year", "make", "trim", "body", "condition", "transmission"]:
         with open(f"{encoders_path}{column}_le.pkl", 'rb') as file:

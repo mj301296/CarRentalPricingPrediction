@@ -1,18 +1,11 @@
 from car_price_predictor.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
 import joblib
-import yaml
 
-# Load the config file
-with open("config.yaml", 'r') as file:
-    config = yaml.safe_load(file)
-    
-model_save_path = config['model_save_path']
-encoders_path = config['encoders_path']
-scalar_path = config['scaler_path']
+
 
 # Load model, encoders, and scaler
-model = load_model(model_save_path)
-encoders, scaler = load_encoders_and_scaler(encoders_path, scalar_path)
+model = load_model()
+encoders, scaler = load_encoders_and_scaler()
 
 # New data
 new_data = {

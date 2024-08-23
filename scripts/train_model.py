@@ -3,7 +3,7 @@ from car_price_predictor.model_training import split_data, train_model, evaluate
 import yaml
 
 # Load the config file
-with open("config.yaml", 'r') as file:
+with open("car_price_predictor/config.yaml", 'r') as file:
     config = yaml.safe_load(file)
     
 data_path = config['data_path']
