@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-import joblib
+import pickle
 
 def load_data(file_path):
     dataset = pd.read_csv(file_path)
@@ -22,5 +22,7 @@ def scale_features(input_data):
 
 def save_encoders_and_scaler(label_encoders, scaler, encoders_path, scalar_path):
     for column, le in label_encoders.items():
-        joblib.dump(le, f"{encoders_path}{column}_le.joblib")
-    joblib.dump(scaler, f"{scalar_path}scaler.joblib")
+        with open(f"{encoders_path}{column}_le.pkl", 'wb') as file:
+            pickle.dump(le, file)
+    with open(f"{scalar_path}scaler.pkl", 'wb') as file:
+        pickle.dump(scaler, file)

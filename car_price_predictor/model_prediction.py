@@ -1,15 +1,18 @@
 import pandas as pd
-import joblib
+import pickle
 
 
 def load_model(model_path):
-    return joblib.load(model_path)
+    with open(model_path, 'rb') as file:
+        return pickle.load(file)
 
 def load_encoders_and_scaler(encoders_path,scalar_path):
     encoders = {}
     for column in ["year", "make", "trim", "body", "condition", "transmission"]:
-        encoders[column] = joblib.load(f"{encoders_path}{column}_le.joblib")
-    scaler = joblib.load(f"{scalar_path}scaler.joblib")
+        with open(f"{encoders_path}{column}_le.pkl", 'rb') as file:
+            encoders[column] = pickle.load(file)
+    with open(f"{scalar_path}scaler.pkl", 'rb') as file:
+        scaler = pickle.load(file)
     return encoders, scaler
 
 def preprocess_new_data(new_data, encoders, scaler):
