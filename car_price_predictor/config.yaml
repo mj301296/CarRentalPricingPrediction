@@ -1,10 +1,10 @@
 # config.yaml
 
 # Paths
-data_path: "car_price_predictor/dataset/car_prices.csv"
-model_save_path: "car_price_predictor/trained/model/car_rent_predictor.pkl"
-encoders_path: "car_price_predictor/trained/encoders/"
-scaler_path: "car_price_predictor/trained/scaler/"
+data_path: "dataset/car_prices.csv"
+model_save_path: "trained/model"
+encoders_path: "trained/encoders"
+scaler_path: "trained/scaler"
 
 # Model Parameters
 random_state: 42

@@ -1,9 +1,10 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import pickle
+from car_price_predictor.config.core import DATA_PATH, ENCODERS_PATH, SCALAR_PATH
 
-def load_data(file_path):
-    dataset = pd.read_csv(file_path)
+def load_data():
+    dataset = pd.read_csv(DATA_PATH)
     dataset.dropna(axis=0, inplace=True)
     return dataset
 
@@ -20,9 +21,9 @@ def scale_features(input_data):
     scaled_data = pd.DataFrame(scaler.fit_transform(input_data), columns=input_data.columns)
     return scaled_data, scaler
 
-def save_encoders_and_scaler(label_encoders, scaler, encoders_path, scalar_path):
+def save_encoders_and_scaler(label_encoders, scaler):
     for column, le in label_encoders.items():
-        with open(f"{encoders_path}{column}_le.pkl", 'wb') as file:
+        with open(f"{ENCODERS_PATH}/{column}_le.pkl", 'wb') as file:
             pickle.dump(le, file)
-    with open(f"{scalar_path}scaler.pkl", 'wb') as file:
+    with open(f"{SCALAR_PATH}/scaler.pkl", 'wb') as file:
         pickle.dump(scaler, file)

@@ -1,5 +1,4 @@
-from car_price_predictor.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
-import joblib
+from scripts.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
 
 
 

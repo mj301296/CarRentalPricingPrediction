@@ -3,11 +3,13 @@ include *.md
 include *.yaml
 
 recursive-include car_price_predictor/*
-
+include car_price_predictor/config/*.py
 include car_price_predictor/trained/encoders/*.pkl
-include car_price_predictor/trained/scalers/*.pkl
+include car_price_predictor/trained/scaler/*.pkl
 include car_price_predictor/trained/model/*.pkl
+include car_price_predictor/scripts/*.py
 include car_price_predictor/*.yaml
+include car_price_predictor/predict_price.py
 
 exclude *.log
 exclude *.cfg
