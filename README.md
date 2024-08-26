@@ -68,13 +68,16 @@ pip install .
 
 ## Usage
 
-1. Train the model:
+1. Train the model: Generate .pkl files for model, encoders and scaler
 
 python train_model.py
 
-2. Predict prices:
+2. Predict prices: Utilizes the generated .pkl files to predict prices
 
 python car_rent_predictor/predict_price.py
+
+3. Build package: Generates a build/ and dist/ which includes a .whl and .tar.gz package files
+python setup.py sdist bdist_wheel
 
 
 # FastApi Application: a FastAPI microservice to deliver an API for model predictions, ensuring fast response times and low latency
