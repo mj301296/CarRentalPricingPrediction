@@ -52,15 +52,6 @@
 
 - **`train_model.py`**: Script for training the machine learning model. It preprocesses data, trains the model, and saves the model and encoders to the `trained` directory.
 
-## Installation
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/yourusername/car-rental-pricing-prediction.git
-   cd car-rental-pricing-prediction
-
-
 
 ## Installation of package locally
 
@@ -78,6 +69,9 @@ python car_rent_predictor/predict_price.py
 
 3. Build package: Generates a build/ and dist/ which includes a .whl and .tar.gz package files
 python setup.py sdist bdist_wheel
+
+4. Uploading package to Amazon S3 bucket:
+aws s3 cp dist/ s3://rental-price-predictor-package/car_rent_predictor-v%number%/ --recursive
 
 
 # FastApi Application: a FastAPI microservice to deliver an API for model predictions, ensuring fast response times and low latency
