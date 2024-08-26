@@ -1,7 +1,5 @@
 # CarRentalPricingPrediction
 
-# Car Price Predictor
-
 - This package predicts car rental prices based on various features like car model, type, odometer reading, model year, condition, transmission
 - The model is trained using Ramdom Forest Regressor Classifier
 - It uses sklearn's preprocessing function like LabelEncoder and StandardScaler to transform features into machine-learning-compatible formats, ensuring model accuracy and robustness
