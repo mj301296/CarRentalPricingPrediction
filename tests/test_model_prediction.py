@@ -1,17 +1,8 @@
 # tests/test_model_prediction.py
 import unittest
 import pandas as pd
-from car_price_predictor.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
-import joblib
-import yaml
+from car_price_predictor.scripts.model_prediction import load_model,load_encoders_and_scaler, preprocess_new_data, predict_price
 
-# Load the config file
-with open("config.yaml", 'r') as file:
-    config = yaml.safe_load(file)
-    
-model_save_path = config['model_save_path']
-encoders_path = config['encoders_path']
-scalar_path = config['scaler_path']
 
 class TestModelPrediction(unittest.TestCase):
 
@@ -26,9 +17,19 @@ class TestModelPrediction(unittest.TestCase):
             "odometer": 16639.0,
             "transmission": "automatic",
         }
+        
+        self.new_data2 = {
+            "year": 2014,
+            "make": "Hyundai",
+            "trim": "SE",
+            "body": "Sedan",
+            "condition": 5,
+            "odometer": 10000.0,
+            "transmission": "automatic",
+        }
         # Load encoders, scaler, and model
-        self.encoders, self.scaler = load_encoders_and_scaler(encoders_path, scalar_path)
-        self.model = load_model(model_save_path)
+        self.encoders, self.scaler = load_encoders_and_scaler()
+        self.model = load_model()
 
     def test_preprocess_new_data(self):
         processed_data = preprocess_new_data(self.new_data, self.encoders, self.scaler)
@@ -37,6 +38,11 @@ class TestModelPrediction(unittest.TestCase):
     
     def test_predict_price(self):
         processed_data = preprocess_new_data(self.new_data, self.encoders, self.scaler)
+        predicted_price = predict_price(self.model, processed_data)
+        self.assertEqual(predicted_price.shape[1], 5)  # Check if we predict all five output variables
+    
+    def test_predict_price2(self):
+        processed_data = preprocess_new_data(self.new_data2, self.encoders, self.scaler)
         predicted_price = predict_price(self.model, processed_data)
         self.assertEqual(predicted_price.shape[1], 5)  # Check if we predict all five output variables
 
