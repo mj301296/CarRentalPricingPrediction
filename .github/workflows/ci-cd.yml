@@ -102,7 +102,13 @@ jobs:
           pip install -r requirements.txt
         env:
           PIP_CACHE_DIR: ${{ runner.temp }}/pip-cache
-
+      
+      - name: Download dataset artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: car-prices-dataset
+          path: car_price_predictor/dataset/
+          
       - name: Download trained model artifact
         uses: actions/download-artifact@v3
         with:
