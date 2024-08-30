@@ -35,16 +35,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configure AWS Credentials
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          S3_DATASET_BUCKET_NAME: ${{ secrets.S3_DATASET_BUCKET_NAME }}
-        run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region $AWS_REGION
-          aws s3 cp s3://$S3_DATASET_BUCKET_NAME/car_prices.csv dataset/car_prices.csv
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}  # Set your AWS region
+
+      - name: Download dataset from S3
+        run: aws s3 cp s3://${{ secrets.S3_DATASET_BUCKET_NAME }}/car_prices.csv dataset/car_prices.csv
 
   train_model:
     runs-on: ubuntu-latest
@@ -122,9 +120,14 @@ jobs:
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
 
       - name: Upload to S3
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}  # Ensure region is set
+
+      - name: Upload package to S3
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}  # Dynamic S3 bucket name from GitHub Secrets
         run: |
           aws s3 cp dist/ s3://$S3_BUCKET_NAME/packages/$PACKAGE_NAME/$PACKAGE_VERSION/ --recursive
