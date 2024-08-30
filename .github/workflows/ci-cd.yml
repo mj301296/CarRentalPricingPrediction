@@ -168,5 +168,4 @@ jobs:
         env:
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}  # Dynamic S3 bucket name from GitHub Secrets
         run: |
-          aws s3 cp dist/ s3://$S3_BUCKET_NAME/packages/$PACKAGE_NAME/$PACKAGE_VERSION/ --recursive
-          aws s3 cp car_price_predictor/trained/ s3://$S3_BUCKET_NAME/trained_models/ --recursive
+          aws s3 cp dist/ s3://$S3_BUCKET_NAME/$PACKAGE_NAME-$PACKAGE_VERSION/ --recursive
