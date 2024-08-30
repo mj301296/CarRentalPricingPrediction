@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="car_price_predictor",  # Name of your package
-    version="0.1.3",  # Initial release version
+    version="0.1.4",  # Initial release version
     packages=find_packages(),  # Automatically find packages in the project
     include_package_data=True,  # Include data files specified in MANIFEST.in
     install_requires=[
