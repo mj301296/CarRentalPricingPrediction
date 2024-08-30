@@ -110,7 +110,9 @@ jobs:
           path: car_price_predictor/trained/
 
       - name: Run tests
-        run: pytest tests/ --disable-warnings
+        run: |
+          pip install .
+          pytest tests/ --disable-warnings
         continue-on-error: false  # Fail the job if tests fail
 
   package_and_upload:
