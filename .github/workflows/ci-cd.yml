@@ -39,7 +39,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-2
 
       - name: Download dataset from S3
         run: aws s3 cp s3://${{ secrets.S3_DATASET_BUCKET_NAME }}/car_prices.csv dataset/car_prices.csv
