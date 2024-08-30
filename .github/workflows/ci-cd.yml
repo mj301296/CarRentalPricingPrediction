@@ -42,7 +42,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }} 
 
       - name: Download dataset from S3
-        run: aws s3 cp s3://${{ secrets.S3_DATASET_BUCKET_NAME }}/car_prices.csv dataset/car_prices.csv
+        run: aws s3 cp s3://${{ secrets.S3_DATASET_BUCKET_NAME }}/car_prices.csv car_price_predictor/dataset/car_prices.csv
 
   train_model:
     runs-on: ubuntu-latest
