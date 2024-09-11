@@ -72,28 +72,39 @@ pip install .
 ## Usage
 
 1. Train the model: Generate .pkl files for model, encoders and scaler
-   python train_model.py
+
+
+python train_model.py
 
 2. Predict prices: Utilizes the generated .pkl files to predict prices
-   python car_rent_predictor/predict_price.py
+   
+python car_rent_predictor/predict_price.py
 
 3. Build package: Generates a build/ and dist/ which includes a .whl and .tar.gz package files
-   python setup.py sdist bdist_wheel
+
+python setup.py sdist bdist_wheel
 
 4. Uploading package to Amazon S3 bucket:
-   aws s3 cp dist/ s3://<folder-name>/ --recursive
+
+aws s3 cp dist/ s3://<folder-name>/ --recursive
 
 # Utilization of the package
 
 1. Download the package from Amazon S3 bucket:
-   aws s3 cp s3://<folder-name>/<package_name>.whl dist/
+
+aws s3 cp s3://<folder-name>/<package_name>.whl dist/
 
 2. Install the package
-   pip install dist/<package_name>.whl
+
+pip install dist/<package_name>.whl
 
 3. Utilize the functions from car_price_predictor.scripts.model_prediction
-   load_model() #to load the model
-   load_encoders_and_scaler() #to load the encoders and scalar used for preprocessing of input data
-   preprocess_new_data(input_data, encoders, scaler) #process data before prediction
-   predict_price(model, processed_data) #predict the price
+
+load_model() #to load the model<br />
+
+load_encoders_and_scaler() #to load the encoders and scalar used for preprocessing of input data<br />
+
+preprocess_new_data(input_data, encoders, scaler) #process data before prediction<br />
+
+predict_price(model, processed_data) #predict the price<br />
    
