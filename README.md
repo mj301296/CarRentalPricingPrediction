@@ -7,6 +7,9 @@ This repository is part of the **Car Rental Front Office Operations** applicatio
 - [**Rateshop Backend**](https://github.com/mj301296/RateShop): A Spring Boot application that handles car fleet management.
 - [**Rateshop Frontend**](https://github.com/mj301296/rateshop-frontend): A React application offering an interactive user interface for managing car fleet operations.
 
+  
+### CarRentalPricingPrediction
+
 - The package predicts car rental prices based on various features like car model, type, odometer reading, model year, condition, transmission
 - The model is trained using Ramdom Forest Regressor Classifier
 - It uses sklearn's preprocessing function like LabelEncoder and StandardScaler to transform features into machine-learning-compatible formats, ensuring model accuracy and robustness
